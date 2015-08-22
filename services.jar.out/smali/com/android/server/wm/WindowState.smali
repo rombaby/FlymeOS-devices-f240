@@ -1854,6 +1854,8 @@
 
     invoke-static {v2, v0, v5}, Landroid/view/Gravity;->applyDisplay(ILandroid/graphics/Rect;Landroid/graphics/Rect;)V
 
+    invoke-static/range {p0 .. p0}, Lcom/android/server/wm/WindowState$Injector;->computeFrameLw(Lcom/android/server/wm/WindowState;)V
+
     .line 596
     move-object/from16 v0, p0
 

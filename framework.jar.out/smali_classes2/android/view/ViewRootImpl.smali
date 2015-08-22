@@ -173,6 +173,24 @@
 
 
 # instance fields
+.field mForceLayoutByOrientation:Z
+
+.field private mMzLastActionBar:Landroid/view/View;
+
+.field private mMzLastContentScrollY:I
+
+.field private mMzLastContentView:Landroid/view/View;
+
+.field private mMzLastOverlayLayout:Landroid/view/View;
+
+.field private mMzLastRootAsFocus:Landroid/view/View;
+
+.field private mMzLastSplitActionBar:Landroid/view/View;
+
+.field private mMzShadowTouchPoint:Landroid/graphics/Point;
+
+.field private mMzStatusBarNfcShareEnabled:Z
+
 .field private DEBUG_FPS_FROM_BUILD_PROPERTY:Z
 
 .field mAccessibilityFocusedHost:Landroid/view/View;

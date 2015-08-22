@@ -1803,7 +1803,7 @@
 
     iget-object v7, v7, Lcom/android/server/wm/WindowManagerService;->mDragState:Lcom/android/server/wm/DragState;
 
-    invoke-virtual {v7}, Lcom/android/server/wm/DragState;->endDragLw()V
+    invoke-virtual {v7}, Lcom/android/server/wm/DragState;->mzEndDragLwAnimation()V
     :try_end_8
     .catchall {:try_start_8 .. :try_end_8} :catchall_0
 

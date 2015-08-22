@@ -195,6 +195,8 @@
 
 
 # instance fields
+.field mMoveWindowService:Lcom/android/server/wm/MoveWindowService;
+
 .field private defaultLongSet:Z
 
 .field private isDefaultLong:Z
@@ -33839,7 +33841,7 @@
     if-nez v15, :cond_2
 
     :try_start_3
-    new-instance v3, Lcom/android/server/wm/DragState;
+    new-instance v3, Lcom/android/server/wm/MzDragState;
 
     const/4 v7, 0x0
 
@@ -33853,6 +33855,20 @@
     move-object/from16 v0, p0
 
     iput-object v3, v0, Lcom/android/server/wm/WindowManagerService;->mDragState:Lcom/android/server/wm/DragState;
+
+    move-object/from16 v0, p0
+
+    iget-object v3, v0, Lcom/android/server/wm/WindowManagerService;->mDragState:Lcom/android/server/wm/DragState;
+
+    move/from16 v0, p4
+
+    int-to-float v4, v0
+
+    move/from16 v0, p5
+
+    int-to-float v6, v0
+
+    invoke-virtual {v3, v4, v6}, Lcom/android/server/wm/DragState;->mzSetWidthAndHeight(FF)V
 
     .line 7672
     move-object/from16 v0, p0
@@ -36502,6 +36518,12 @@
     .line 3413
     .end local v10    # "displayInfo":Landroid/view/DisplayInfo;
     :cond_1e
+    move/from16 v0, p7
+
+    move-object/from16 v1, v30
+
+    invoke-static {v0, v1}, Lcom/android/server/wm/InjectorWMS;->adjustMoveWindowInputWindow(ILcom/android/server/wm/WindowState;)V
+
     move-object/from16 v0, v30
 
     iget-object v0, v0, Lcom/android/server/wm/WindowState;->mAppToken:Lcom/android/server/wm/AppWindowToken;
@@ -47407,6 +47429,8 @@
 
     .line 10769
     .local v1, "focusChanged":I
+    invoke-static {}, Lcom/android/server/wm/InjectorWMS;->applyDarkStatusBarTheme()V
+
     if-eqz v2, :cond_2
 
     iget-object v5, p0, Lcom/android/server/wm/WindowManagerService;->mInputMethodWindow:Lcom/android/server/wm/WindowState;

@@ -374,7 +374,7 @@
     invoke-virtual {v6, v7}, Landroid/view/Window;->setType(I)V
 
     .line 540
-    invoke-virtual {v5}, Landroid/app/ProgressDialog;->show()V
+    invoke-static/range {p0 .. p0}, Lcom/android/server/power/InjectorPower;->showShutDownAnimation(Landroid/content/Context;)V
 
     .line 561
     .end local v5    # "pd":Landroid/app/ProgressDialog;

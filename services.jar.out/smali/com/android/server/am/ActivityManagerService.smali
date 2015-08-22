@@ -2647,6 +2647,9 @@
 
     .end local v11    # "itsOnProcessObserver":Landroid/app/IProcessObserver;
     :cond_5
+
+    invoke-static/range {p0 .. p0}, Lcom/android/server/am/InjectorAMS;->setup(Lcom/android/server/am/ActivityManagerService;)V
+
     return-void
 
     :catch_0

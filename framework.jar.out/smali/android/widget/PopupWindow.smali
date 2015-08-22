@@ -4463,6 +4463,10 @@
     const/4 v6, 0x1
 
     :cond_6
+    invoke-direct {p0, v5, v6}, Landroid/widget/PopupWindow;->mzUpdate(Landroid/view/WindowManager$LayoutParams;Z)Z
+
+    move-result v6
+
     iget v8, v5, Landroid/view/WindowManager$LayoutParams;->x:I
 
     if-eq v8, p1, :cond_7

@@ -1112,6 +1112,8 @@
 
     iput-boolean v2, v0, Lcom/android/server/pm/PackageManagerService;->mMediaMounted:Z
 
+    invoke-static/range {p0 .. p0}, Lcom/android/server/pm/InjectorPMS;->setup(Lcom/android/server/pm/PackageManagerService;)V
+
     sget-boolean v2, Lcom/lge/config/ConfigBuildFlags;->CAPP_UPLUSAPI:Z
 
     if-eqz v2, :cond_0
@@ -2870,6 +2872,8 @@
     move-object/from16 v0, v22
 
     invoke-virtual {v0, v2}, Ljava/util/HashSet;->add(Ljava/lang/Object;)Z
+
+    invoke-static/range {v22 .. v22}, Lcom/android/server/pm/InjectorPMS;->mzAddAlreadyDexOpted(Ljava/util/HashSet;)V
 
     invoke-virtual/range {v44 .. v44}, Ljava/io/File;->list()[Ljava/lang/String;
 
@@ -16348,7 +16352,7 @@
 
     move-result v5
 
-    if-nez v5, :cond_4
+    if-nez v5, :cond_flyme_0
 
     :cond_0
     move v0, v4
@@ -16356,6 +16360,7 @@
     .line 8226
     .local v0, "allowed":Z
     :goto_0
+    :goto_flyme_0
     const-string v5, "ro.build.target_operator"
 
     invoke-static {v5}, Landroid/os/SystemProperties;->get(Ljava/lang/String;)Ljava/lang/String;
@@ -55410,7 +55415,7 @@
 
     move/from16 v1, v16
 
-    invoke-direct {v0, v12, v5, v1}, Lcom/android/server/pm/PackageManagerService;->performBootDexOpt(Landroid/content/pm/PackageParser$Package;II)V
+    invoke-direct {v0, v12, v5, v1}, Lcom/android/server/pm/PackageManagerService;->mzperformBootDexOpt(Landroid/content/pm/PackageParser$Package;II)V
 
     goto :goto_6
 .end method
