@@ -897,7 +897,7 @@
     if-nez v19, :cond_7
 
     .line 1402
-    const-string v19, "res:android:drawable/default_wallpaper"
+    const-string v19, ""
 
     move-object/from16 v0, v19
 
