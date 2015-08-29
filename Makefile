@@ -89,7 +89,7 @@ vendor_modify_jars := android.policy com.lge.fmradio.framework com.lge.framework
 # The default value is nothing.
 # You can configure the board system file path which relative to the system directory in the board release.
 #-----------------------------------------------------------------------------
-board_saved_files := lib/libwebviewchromium.so
+board_saved_files := lib/libwebviewchromium.so bin/bootanimation bin/shutdownanimation 
 
 ##############################################################################
 # The value decides which board system apk you want to remove.
