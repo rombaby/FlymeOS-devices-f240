@@ -1117,7 +1117,26 @@
     .param p0, "pwm"    # Lcom/android/internal/policy/impl/PhoneWindowManager;
 
     .prologue
-    iget-boolean v0, p0, Lcom/android/internal/policy/impl/PhoneWindowManager;->mMzKeyguardSecure:Z
+    iget-object v0, p0, Lcom/android/internal/policy/impl/PhoneWindowManager;->mMzKeyguardSecure:Ljava/lang/Boolean;
+
+    if-nez v0, :cond_0
+
+    invoke-virtual {p0}, Lcom/android/internal/policy/impl/PhoneWindowManager;->isKeyguardSecure()Z
+
+    move-result v0
+
+    invoke-static {v0}, Ljava/lang/Boolean;->valueOf(Z)Ljava/lang/Boolean;
+
+    move-result-object v0
+
+    iput-object v0, p0, Lcom/android/internal/policy/impl/PhoneWindowManager;->mMzKeyguardSecure:Ljava/lang/Boolean;
+
+    :cond_0
+    iget-object v0, p0, Lcom/android/internal/policy/impl/PhoneWindowManager;->mMzKeyguardSecure:Ljava/lang/Boolean;
+
+    invoke-virtual {v0}, Ljava/lang/Boolean;->booleanValue()Z
+
+    move-result v0
 
     return v0
 .end method
@@ -1127,11 +1146,18 @@
     .param p0, "pwm"    # Lcom/android/internal/policy/impl/PhoneWindowManager;
 
     .prologue
-    invoke-virtual {p0}, Lcom/android/internal/policy/impl/PhoneWindowManager;->isKeyguardSecure()Z
+    const/4 v0, 0x0
 
-    move-result v0
-
-    iput-boolean v0, p0, Lcom/android/internal/policy/impl/PhoneWindowManager;->mMzKeyguardSecure:Z
+    iput-object v0, p0, Lcom/android/internal/policy/impl/PhoneWindowManager;->mMzKeyguardSecure:Ljava/lang/Boolean;
 
     return-void
+.end method
+
+.method static mzGetKeyguardSecure()Z
+    .locals 1
+
+    .prologue
+    const/4 v0, 0x0
+
+    return v0
 .end method

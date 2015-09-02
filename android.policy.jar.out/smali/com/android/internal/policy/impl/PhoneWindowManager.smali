@@ -208,7 +208,7 @@
 
 .field mzPwm:Lcom/android/internal/policy/impl/MzPhoneWindowManager;
 
-.field mMzKeyguardSecure:Z
+.field mMzKeyguardSecure:Ljava/lang/Boolean;
 
 .field mAccelerometerDefault:Z
 
@@ -5193,7 +5193,7 @@
 
     .local v2, "dismissKeyguard":Z
     :goto_3
-    invoke-static {p0}, Lcom/android/internal/policy/impl/PhoneWindowManager$FlymeInjector;->mzGetKeyguardSecure(Lcom/android/internal/policy/impl/PhoneWindowManager;)Z
+    invoke-static {}, Lcom/android/internal/policy/impl/PhoneWindowManager$FlymeInjector;->mzGetKeyguardSecure()Z
 
     move-result v4
 
@@ -5291,6 +5291,10 @@
     iget-boolean v8, p0, Lcom/android/internal/policy/impl/PhoneWindowManager;->mShowingLockscreen:Z
 
     if-eqz v8, :cond_16
+
+    invoke-static/range {p0 .. p0}, Lcom/android/internal/policy/impl/PhoneWindowManager$FlymeInjector;->mzGetKeyguardSecure(Lcom/android/internal/policy/impl/PhoneWindowManager;)Z
+
+    move-result v4
 
     if-eqz v4, :cond_16
 
@@ -5415,39 +5419,36 @@
     :cond_f
     move v1, v7
 
-    .line 3997
     goto/16 :goto_1
 
     .restart local v1    # "appWindow":Z
     :cond_10
     move v5, v7
 
-    .line 4017
     goto/16 :goto_2
 
     .restart local v5    # "showWhenLocked":Z
     :cond_11
     move v2, v7
 
-    .line 4018
     goto/16 :goto_3
 
-    .line 4031
     .restart local v0    # "appToken":Landroid/view/IApplicationToken;
     .restart local v2    # "dismissKeyguard":Z
     .restart local v4    # "secureKeyguard":Z
     :cond_12
     if-eqz v2, :cond_14
 
-    .line 4032
+    invoke-static/range {p0 .. p0}, Lcom/android/internal/policy/impl/PhoneWindowManager$FlymeInjector;->mzGetKeyguardSecure(Lcom/android/internal/policy/impl/PhoneWindowManager;)Z
+
+    move-result v4
+
     if-eqz v4, :cond_13
 
-    .line 4033
     iget-object v8, p0, Lcom/android/internal/policy/impl/PhoneWindowManager;->mAppsToBeHidden:Ljava/util/HashSet;
 
     invoke-virtual {v8, v0}, Ljava/util/HashSet;->add(Ljava/lang/Object;)Z
 
-    .line 4037
     :goto_9
     iget-object v8, p0, Lcom/android/internal/policy/impl/PhoneWindowManager;->mAppsThatDismissKeyguard:Ljava/util/HashSet;
 
@@ -6123,6 +6124,12 @@
     move-result v2
 
     or-int/2addr v15, v2
+
+    move-object/from16 v0, p0
+
+    iget-object v2, v0, Lcom/android/internal/policy/impl/PhoneWindowManager;->mHideNavManager:Lcom/android/internal/policy/impl/PhoneWindowManager$ForcingNavHideManagerBySetting;
+
+    invoke-virtual {v2}, Lcom/android/internal/policy/impl/PhoneWindowManager$ForcingNavHideManagerBySetting;->updateSplitStatus()V
 
     .line 3163
     :cond_2
@@ -7389,6 +7396,8 @@
     goto/16 :goto_f
 
     .line 3062
+    nop
+
     :pswitch_data_0
     .packed-switch 0x1
         :pswitch_0
@@ -11465,6 +11474,8 @@
     invoke-static {v0}, Lcom/lge/internal/statusbar/IStatusBarServiceEx$Stub;->asInterface(Landroid/os/IBinder;)Lcom/lge/internal/statusbar/IStatusBarServiceEx;
 
     move-result-object v0
+
+    const/4 v0, 0x0
 
     iput-object v0, p0, Lcom/android/internal/policy/impl/PhoneWindowManager;->mStatusBarServiceEx:Lcom/lge/internal/statusbar/IStatusBarServiceEx;
 
