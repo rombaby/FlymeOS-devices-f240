@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <!--
 /*
 ** Copyright 2006, Google Inc.
@@ -19,7 +19,7 @@
 
 <!-- use empty string to specify no proxy or port -->
 <!-- This version must agree with that in apps/common/res/apns.xml -->
-<apns version="11">
+<apns version="8">
 
 <apn carrier="Cosmote Internet"
     mcc="202"
@@ -21528,6 +21528,8 @@ extraid="4E"
     mmsport=""
     mmsc=""
     type="default"
+    roaming_protocol="IP" 
+    protocol="IP" 
     preferapp="" />
 
 <apn carrier="MMS"
