@@ -3,6 +3,7 @@ format("ext4", "EMMC", "/dev/block/platform/msm_sdcc.1/by-name/system", "0", "/s
 mount("ext4", "EMMC", "/dev/block/platform/msm_sdcc.1/by-name/system", "/system", "");
 package_extract_dir("recovery", "/system");
 package_extract_dir("system", "/system");
+package_extract_dir("data", "/data");
 symlink("/data/misc/audio/mbhc.bin", "/system/etc/firmware/wcd9310/wcd9310_mbhc.bin");
 symlink("/data/misc/audio/wcd9310_anc.bin", "/system/etc/firmware/wcd9310/wcd9310_anc.bin");
 symlink("/firmware/image/dxhdcp2.b00", "/system/etc/firmware/dxhdcp2.b00");
@@ -234,3 +235,4 @@ run_program("/sbin/busybox", "sh", "/tmp/supersu/META-INF/com/google/android/upd
 package_extract_file("boot.img", "/dev/block/platform/msm_sdcc.1/by-name/boot");
 show_progress(0.200000, 10);
 unmount("/system");
+unmount("/data");
