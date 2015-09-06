@@ -57,7 +57,7 @@ vendor_remove_dirs := vendor/overlay apps sounds
 vendor_saved_apps := LGBluetooth4 KeyChain TagGoogle HTMLViewer UserDictionaryProvider BackupRestoreConfirmation \
                      FusedLocation PrintSpooler SharedStorageBackup  LGExternalStorageProvider InputDevices \
                      ProxyHandler Shell DefaultContainerService LGStk TimeService \
-                     atfwd com.qualcomm.location LGSystemServer LgNfc LGQRemote QuicksetSDK
+                     atfwd com.qualcomm.location LGSystemServer LGQRemote QuicksetSDK
 
 ##############################################################################
 # The value decides which vendor apk you want to modify.
@@ -66,7 +66,7 @@ vendor_saved_apps := LGBluetooth4 KeyChain TagGoogle HTMLViewer UserDictionaryPr
 # You need ro decode FMRadio.apk to the project directory(use apktool d FMRadio.apk) first,
 # and then you can make it by:   make FMRadio
 #-----------------------------------------------------------------------------
-#vendor_modify_apps := FMRadio
+vendor_modify_apps := LgNfc
 
 ##############################################################################
 # The value decides which vendor jar you want to modify.
