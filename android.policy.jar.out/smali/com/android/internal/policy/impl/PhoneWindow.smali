@@ -1375,7 +1375,7 @@
     .local v1, "transition":Landroid/transition/Transition;
     if-eq v2, v4, :cond_1
 
-    const/high16 v3, #android:transition@no_transition#i
+    const/high16 v3, #android:transition@no_transition#t
 
     if-eq v2, v3, :cond_1
 

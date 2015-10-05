@@ -6089,7 +6089,7 @@
     goto :goto_0
 .end method
 
-.method private getDigitalPenOffScreenDisplayContentLocked()Lcom/android/server/wm/DisplayContent;
+.method public getDigitalPenOffScreenDisplayContentLocked()Lcom/android/server/wm/DisplayContent;
     .locals 8
 
     .prologue
@@ -15672,6 +15672,8 @@
 
     move-result-object v5
 
+    const/4 v5, 0x0
+
     .line 3800
     .local v5, "c":Ljava/lang/Class;
     if-eqz v5, :cond_2
@@ -16924,6 +16926,8 @@
     invoke-static {v4}, Ljava/lang/Class;->forName(Ljava/lang/String;)Ljava/lang/Class;
 
     move-result-object v18
+
+    const/16 v18, 0x0
 
     .line 2462
     .local v18, "c":Ljava/lang/Class;
@@ -21287,7 +21291,7 @@
 
     .prologue
     .line 7412
-    invoke-direct {p0}, Lcom/android/server/wm/WindowManagerService;->getDigitalPenOffScreenDisplayContentLocked()Lcom/android/server/wm/DisplayContent;
+    invoke-virtual {p0}, Lcom/android/server/wm/WindowManagerService;->getDigitalPenOffScreenDisplayContentLocked()Lcom/android/server/wm/DisplayContent;
 
     move-result-object v0
 
@@ -33742,6 +33746,8 @@
     invoke-static {v3}, Ljava/lang/Class;->forName(Ljava/lang/String;)Ljava/lang/Class;
 
     move-result-object v9
+
+    const/4 v9, 0x0
 
     .line 7655
     .local v9, "c":Ljava/lang/Class;
@@ -51512,7 +51518,7 @@
     .locals 0
 
     .prologue
-    invoke-direct {p0}, Lcom/android/server/wm/WindowManagerService;->performLayoutAndPlaceSurfacesLocked()V
+    invoke-virtual {p0}, Lcom/android/server/wm/WindowManagerService;->performLayoutAndPlaceSurfacesLocked()V
 
     return-void
 .end method

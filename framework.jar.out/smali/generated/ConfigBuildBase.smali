@@ -427,7 +427,7 @@
     sput-boolean v1, Lgenerated/ConfigBuildBase;->CAPP_SOUNDNORMALIZER:Z
 
     .line 78
-    sput-boolean v1, Lgenerated/ConfigBuildBase;->CAPP_SPLITWINDOW:Z
+    sput-boolean v0, Lgenerated/ConfigBuildBase;->CAPP_SPLITWINDOW:Z
 
     .line 79
     sput-boolean v0, Lgenerated/ConfigBuildBase;->CAPP_SUPPORT_LPA:Z

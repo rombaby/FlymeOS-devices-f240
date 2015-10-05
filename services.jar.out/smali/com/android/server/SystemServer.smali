@@ -2276,6 +2276,8 @@
 
     move-result-object v43
 
+    const/16 v43, 0x0
+
     .line 723
     .restart local v43    # "c":Ljava/lang/Class;
     if-eqz v43, :cond_7
@@ -3719,6 +3721,8 @@
     :cond_26
     :goto_34
     sget-boolean v4, Lcom/lge/config/ConfigBuildFlags;->CAPP_THEMEICON:Z
+
+    const/4 v4, 0x0
 
     if-eqz v4, :cond_27
 

@@ -39,6 +39,8 @@
 
 .field private mIsRegistered:Z
 
+.field public mIsSplitStatus:Z
+
 .field private mIsTalkbackEnabled:Z
 
 .field public mLastNavHiddenState:Z
@@ -144,6 +146,8 @@
     iput-boolean v4, p0, Lcom/android/internal/policy/impl/PhoneWindowManager$ForcingNavHideManagerBySetting;->mIsRegistered:Z
 
     .line 6452
+    iput-boolean v4, p0, Lcom/android/internal/policy/impl/PhoneWindowManager$ForcingNavHideManagerBySetting;->mIsSplitStatus:Z
+
     new-instance v2, Lcom/android/internal/policy/impl/PhoneWindowManager$ForcingNavHideManagerBySetting$1;
 
     invoke-direct {v2, p0}, Lcom/android/internal/policy/impl/PhoneWindowManager$ForcingNavHideManagerBySetting$1;-><init>(Lcom/android/internal/policy/impl/PhoneWindowManager$ForcingNavHideManagerBySetting;)V
@@ -1326,4 +1330,127 @@
 
     .line 6498
     return-void
+.end method
+
+.method public updateSplitStatus()V
+    .locals 6
+
+    .prologue
+    const/4 v5, 0x3
+
+    .line 6524
+    const/4 v4, 0x0
+
+    iput-boolean v4, p0, Lcom/android/internal/policy/impl/PhoneWindowManager$ForcingNavHideManagerBySetting;->mIsSplitStatus:Z
+
+    .line 6526
+    sget-boolean v4, Lcom/lge/config/ConfigBuildFlags;->CAPP_SPLITWINDOW:Z
+
+    if-eqz v4, :cond_0
+
+    .line 6527
+    invoke-static {}, Lcom/lge/loader/splitwindow/SplitWindowCreatorHelper;->getPolicyService()Lcom/lge/loader/splitwindow/ISplitWindow$ISplitWindowPolicy;
+
+    move-result-object v1
+
+    .line 6529
+    .local v1, "splitWindowManager":Lcom/lge/loader/splitwindow/ISplitWindow$ISplitWindowPolicy;
+    :try_start_0
+    invoke-interface {v1}, Lcom/lge/loader/splitwindow/ISplitWindow$ISplitWindowPolicy;->isSplitMode()Z
+
+    move-result v4
+
+    if-eqz v4, :cond_0
+
+    iget-object v4, p0, Lcom/android/internal/policy/impl/PhoneWindowManager$ForcingNavHideManagerBySetting;->this$0:Lcom/android/internal/policy/impl/PhoneWindowManager;
+
+    iget-object v4, v4, Lcom/android/internal/policy/impl/PhoneWindowManager;->mFocusedWindow:Landroid/view/WindowManagerPolicy$WindowState;
+
+    if-eqz v4, :cond_0
+
+    .line 6531
+    const/4 v2, 0x0
+
+    .local v2, "zoneAScrInfo":Lcom/lge/loader/splitwindow/ISplitWindow$IScreenInfo;
+    const/4 v3, 0x0
+
+    .line 6532
+    .local v3, "zoneBScrInfo":Lcom/lge/loader/splitwindow/ISplitWindow$IScreenInfo;
+    const/4 v4, 0x1
+
+    invoke-interface {v1, v4}, Lcom/lge/loader/splitwindow/ISplitWindow$ISplitWindowPolicy;->getScreenInfoForZone(I)Lcom/lge/loader/splitwindow/ISplitWindow$IScreenInfo;
+
+    move-result-object v2
+
+    .line 6533
+    const/4 v4, 0x2
+
+    invoke-interface {v1, v4}, Lcom/lge/loader/splitwindow/ISplitWindow$ISplitWindowPolicy;->getScreenInfoForZone(I)Lcom/lge/loader/splitwindow/ISplitWindow$IScreenInfo;
+
+    move-result-object v3
+
+    .line 6534
+    invoke-interface {v2}, Lcom/lge/loader/splitwindow/ISplitWindow$IScreenInfo;->getScreenState()I
+
+    move-result v4
+
+    if-eq v4, v5, :cond_0
+
+    invoke-interface {v3}, Lcom/lge/loader/splitwindow/ISplitWindow$IScreenInfo;->getScreenState()I
+
+    move-result v4
+
+    if-eq v4, v5, :cond_0
+
+    .line 6535
+    const/4 v4, 0x1
+
+    iput-boolean v4, p0, Lcom/android/internal/policy/impl/PhoneWindowManager$ForcingNavHideManagerBySetting;->mIsSplitStatus:Z
+    :try_end_0
+    .catch Landroid/os/RemoteException; {:try_start_0 .. :try_end_0} :catch_0
+    .catch Ljava/lang/NullPointerException; {:try_start_0 .. :try_end_0} :catch_1
+
+    .line 6545
+    .end local v1    # "splitWindowManager":Lcom/lge/loader/splitwindow/ISplitWindow$ISplitWindowPolicy;
+    .end local v2    # "zoneAScrInfo":Lcom/lge/loader/splitwindow/ISplitWindow$IScreenInfo;
+    .end local v3    # "zoneBScrInfo":Lcom/lge/loader/splitwindow/ISplitWindow$IScreenInfo;
+    :cond_0
+    :goto_0
+    return-void
+
+    .line 6538
+    .restart local v1    # "splitWindowManager":Lcom/lge/loader/splitwindow/ISplitWindow$ISplitWindowPolicy;
+    :catch_0
+    move-exception v0
+
+    .line 6539
+    .local v0, "e":Landroid/os/RemoteException;
+    const-string v4, "SplitWindow"
+
+    const-string v5, "Binder service (SplitWindowPolicyService) is not available. need to recover Service"
+
+    invoke-static {v4, v5}, Landroid/util/Log;->e(Ljava/lang/String;Ljava/lang/String;)I
+
+    .line 6540
+    invoke-static {}, Lcom/lge/loader/splitwindow/SplitWindowCreatorHelper;->recoverService()Lcom/lge/loader/splitwindow/ISplitWindow$ISplitWindowPolicy;
+
+    move-result-object v1
+
+    .line 6543
+    goto :goto_0
+
+    .line 6541
+    .end local v0    # "e":Landroid/os/RemoteException;
+    :catch_1
+    move-exception v0
+
+    .line 6542
+    .local v0, "e":Ljava/lang/NullPointerException;
+    const-string v4, "SplitWindow"
+
+    const-string v5, "SplitWindowPolicyService is not created well.. check service routine"
+
+    invoke-static {v4, v5}, Landroid/util/Log;->e(Ljava/lang/String;Ljava/lang/String;)I
+
+    goto :goto_0
 .end method

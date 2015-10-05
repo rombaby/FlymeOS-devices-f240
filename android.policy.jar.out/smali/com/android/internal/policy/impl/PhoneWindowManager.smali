@@ -2702,121 +2702,25 @@
 .end method
 
 .method private isSplitStatus()Z
-    .locals 7
+    .locals 1
 
     .prologue
-    const/4 v6, 0x3
-
-    const/4 v4, 0x1
-
-    .line 6363
-    sget-boolean v5, Lcom/lge/config/ConfigBuildFlags;->CAPP_SPLITWINDOW:Z
-
-    if-eqz v5, :cond_0
-
-    .line 6364
-    invoke-static {}, Lcom/lge/loader/splitwindow/SplitWindowCreatorHelper;->getPolicyService()Lcom/lge/loader/splitwindow/ISplitWindow$ISplitWindowPolicy;
-
-    move-result-object v1
-
-    .line 6366
-    .local v1, "splitWindowManager":Lcom/lge/loader/splitwindow/ISplitWindow$ISplitWindowPolicy;
-    :try_start_0
-    invoke-interface {v1}, Lcom/lge/loader/splitwindow/ISplitWindow$ISplitWindowPolicy;->isSplitMode()Z
-
-    move-result v5
-
-    if-eqz v5, :cond_0
-
-    iget-object v5, p0, Lcom/android/internal/policy/impl/PhoneWindowManager;->mFocusedWindow:Landroid/view/WindowManagerPolicy$WindowState;
-
-    if-eqz v5, :cond_0
-
-    .line 6368
-    const/4 v2, 0x0
-
-    .local v2, "zoneAScrInfo":Lcom/lge/loader/splitwindow/ISplitWindow$IScreenInfo;
-    const/4 v3, 0x0
-
-    .line 6369
-    .local v3, "zoneBScrInfo":Lcom/lge/loader/splitwindow/ISplitWindow$IScreenInfo;
-    const/4 v5, 0x1
-
-    invoke-interface {v1, v5}, Lcom/lge/loader/splitwindow/ISplitWindow$ISplitWindowPolicy;->getScreenInfoForZone(I)Lcom/lge/loader/splitwindow/ISplitWindow$IScreenInfo;
-
-    move-result-object v2
-
-    .line 6370
-    const/4 v5, 0x2
-
-    invoke-interface {v1, v5}, Lcom/lge/loader/splitwindow/ISplitWindow$ISplitWindowPolicy;->getScreenInfoForZone(I)Lcom/lge/loader/splitwindow/ISplitWindow$IScreenInfo;
-
-    move-result-object v3
-
     .line 6371
-    invoke-interface {v2}, Lcom/lge/loader/splitwindow/ISplitWindow$IScreenInfo;->getScreenState()I
+    iget-object v0, p0, Lcom/android/internal/policy/impl/PhoneWindowManager;->mHideNavManager:Lcom/android/internal/policy/impl/PhoneWindowManager$ForcingNavHideManagerBySetting;
 
-    move-result v5
+    if-nez v0, :cond_0
 
-    if-eq v5, v6, :cond_0
+    const/4 v0, 0x0
 
-    invoke-interface {v3}, Lcom/lge/loader/splitwindow/ISplitWindow$IScreenInfo;->getScreenState()I
-    :try_end_0
-    .catch Landroid/os/RemoteException; {:try_start_0 .. :try_end_0} :catch_0
-    .catch Ljava/lang/NullPointerException; {:try_start_0 .. :try_end_0} :catch_1
-
-    move-result v5
-
-    if-eq v5, v6, :cond_0
-
-    .line 6381
-    .end local v1    # "splitWindowManager":Lcom/lge/loader/splitwindow/ISplitWindow$ISplitWindowPolicy;
-    .end local v2    # "zoneAScrInfo":Lcom/lge/loader/splitwindow/ISplitWindow$IScreenInfo;
-    .end local v3    # "zoneBScrInfo":Lcom/lge/loader/splitwindow/ISplitWindow$IScreenInfo;
     :goto_0
-    return v4
+    return v0
 
-    .line 6374
-    .restart local v1    # "splitWindowManager":Lcom/lge/loader/splitwindow/ISplitWindow$ISplitWindowPolicy;
-    :catch_0
-    move-exception v0
-
-    .line 6375
-    .local v0, "e":Landroid/os/RemoteException;
-    const-string v4, "SplitWindow"
-
-    const-string v5, "Binder service (SplitWindowPolicyService) is not available. need to recover Service"
-
-    invoke-static {v4, v5}, Landroid/util/Log;->e(Ljava/lang/String;Ljava/lang/String;)I
-
-    .line 6376
-    invoke-static {}, Lcom/lge/loader/splitwindow/SplitWindowCreatorHelper;->recoverService()Lcom/lge/loader/splitwindow/ISplitWindow$ISplitWindowPolicy;
-
-    move-result-object v1
-
-    .line 6381
-    .end local v0    # "e":Landroid/os/RemoteException;
-    .end local v1    # "splitWindowManager":Lcom/lge/loader/splitwindow/ISplitWindow$ISplitWindowPolicy;
     :cond_0
-    :goto_1
-    const/4 v4, 0x0
+    iget-object v0, p0, Lcom/android/internal/policy/impl/PhoneWindowManager;->mHideNavManager:Lcom/android/internal/policy/impl/PhoneWindowManager$ForcingNavHideManagerBySetting;
+
+    iget-boolean v0, v0, Lcom/android/internal/policy/impl/PhoneWindowManager$ForcingNavHideManagerBySetting;->mIsSplitStatus:Z
 
     goto :goto_0
-
-    .line 6377
-    .restart local v1    # "splitWindowManager":Lcom/lge/loader/splitwindow/ISplitWindow$ISplitWindowPolicy;
-    :catch_1
-    move-exception v0
-
-    .line 6378
-    .local v0, "e":Ljava/lang/NullPointerException;
-    const-string v4, "SplitWindow"
-
-    const-string v5, "SplitWindowPolicyService is not created well.. check service routine"
-
-    invoke-static {v4, v5}, Landroid/util/Log;->e(Ljava/lang/String;Ljava/lang/String;)I
-
-    goto :goto_1
 .end method
 
 .method private isStatusBarKeyguard()Z
@@ -7723,6 +7627,14 @@
 
     .line 1538
     :sswitch_1
+    const/16 v3, 0x2d
+
+    aput v3, p2, v2
+
+    goto :goto_1
+
+    .line 1535
+    :sswitch_2
     const-string v0, "android.permission.SYSTEM_ALERT_WINDOW"
 
     .line 1539
@@ -7735,12 +7647,12 @@
     .line 1516
     :sswitch_data_0
     .sparse-switch
-        0x7d2 -> :sswitch_1
-        0x7d3 -> :sswitch_1
-        0x7d5 -> :sswitch_0
-        0x7d6 -> :sswitch_1
-        0x7d7 -> :sswitch_1
-        0x7da -> :sswitch_1
+        0x7d2 -> :sswitch_2
+        0x7d3 -> :sswitch_2
+        0x7d5 -> :sswitch_1
+        0x7d6 -> :sswitch_2
+        0x7d7 -> :sswitch_2
+        0x7da -> :sswitch_2
         0x7db -> :sswitch_0
         0x7dd -> :sswitch_0
         0x7e7 -> :sswitch_0
@@ -11979,7 +11891,7 @@
     .prologue
     const/4 v9, 0x1
 
-    const/high16 v8, 0x10200000
+    const/high16 v8, #android:id@background#t0
 
     const/4 v7, 0x0
 
@@ -21768,44 +21680,91 @@
 .end method
 
 .method setHdmiPlugged(Z)V
-    .locals 3
+    .locals 7
     .param p1, "plugged"    # Z
 
     .prologue
-    const/4 v2, 0x1
+    const/high16 v6, 0x4000000
 
-    iget-boolean v1, p0, Lcom/android/internal/policy/impl/PhoneWindowManager;->mHdmiPlugged:Z
+    const/4 v3, 0x1
 
-    if-eq v1, p1, :cond_0
+    iget-boolean v4, p0, Lcom/android/internal/policy/impl/PhoneWindowManager;->mHdmiPlugged:Z
+
+    if-eq v4, p1, :cond_0
 
     iput-boolean p1, p0, Lcom/android/internal/policy/impl/PhoneWindowManager;->mHdmiPlugged:Z
 
-    invoke-virtual {p0, v2, v2}, Lcom/android/internal/policy/impl/PhoneWindowManager;->updateRotation(ZZ)V
+    invoke-virtual {p0, v3, v3}, Lcom/android/internal/policy/impl/PhoneWindowManager;->updateRotation(ZZ)V
 
     new-instance v0, Landroid/content/Intent;
 
-    const-string v1, "android.intent.action.HDMI_PLUGGED"
+    const-string v4, "android.intent.action.HDMI_PLUGGED"
 
-    invoke-direct {v0, v1}, Landroid/content/Intent;-><init>(Ljava/lang/String;)V
+    invoke-direct {v0, v4}, Landroid/content/Intent;-><init>(Ljava/lang/String;)V
 
     .local v0, "intent":Landroid/content/Intent;
-    const/high16 v1, 0x4000000
+    invoke-virtual {v0, v6}, Landroid/content/Intent;->addFlags(I)Landroid/content/Intent;
 
-    invoke-virtual {v0, v1}, Landroid/content/Intent;->addFlags(I)Landroid/content/Intent;
+    const-string v4, "state"
 
-    const-string v1, "state"
+    invoke-virtual {v0, v4, p1}, Landroid/content/Intent;->putExtra(Ljava/lang/String;Z)Landroid/content/Intent;
 
-    invoke-virtual {v0, v1, p1}, Landroid/content/Intent;->putExtra(Ljava/lang/String;Z)Landroid/content/Intent;
+    iget-object v4, p0, Lcom/android/internal/policy/impl/PhoneWindowManager;->mContext:Landroid/content/Context;
 
-    iget-object v1, p0, Lcom/android/internal/policy/impl/PhoneWindowManager;->mContext:Landroid/content/Context;
+    sget-object v5, Landroid/os/UserHandle;->ALL:Landroid/os/UserHandle;
 
-    sget-object v2, Landroid/os/UserHandle;->ALL:Landroid/os/UserHandle;
+    invoke-virtual {v4, v0, v5}, Landroid/content/Context;->sendStickyBroadcastAsUser(Landroid/content/Intent;Landroid/os/UserHandle;)V
 
-    invoke-virtual {v1, v0, v2}, Landroid/content/Context;->sendStickyBroadcastAsUser(Landroid/content/Intent;Landroid/os/UserHandle;)V
+    const-string v4, "ro.build.target_operator"
+
+    invoke-static {v4}, Landroid/os/SystemProperties;->get(Ljava/lang/String;)Ljava/lang/String;
+
+    move-result-object v2
+
+    .local v2, "operator":Ljava/lang/String;
+    const-string v4, "VZW"
+
+    invoke-virtual {v4, v2}, Ljava/lang/String;->equalsIgnoreCase(Ljava/lang/String;)Z
+
+    move-result v4
+
+    if-eqz v4, :cond_0
+
+    new-instance v1, Landroid/content/Intent;
+
+    const-string v4, "verizon.intent.action.HDMI_PLUG"
+
+    invoke-direct {v1, v4}, Landroid/content/Intent;-><init>(Ljava/lang/String;)V
+
+    .local v1, "intentHdmiPlug":Landroid/content/Intent;
+    invoke-virtual {v1, v6}, Landroid/content/Intent;->addFlags(I)Landroid/content/Intent;
+
+    const-string v4, "state"
+
+    if-eqz p1, :cond_1
+
+    :goto_0
+    invoke-virtual {v1, v4, v3}, Landroid/content/Intent;->putExtra(Ljava/lang/String;I)Landroid/content/Intent;
+
+    iget-object v3, p0, Lcom/android/internal/policy/impl/PhoneWindowManager;->mContext:Landroid/content/Context;
+
+    sget-object v4, Landroid/os/UserHandle;->ALL:Landroid/os/UserHandle;
+
+    invoke-virtual {v3, v1, v4}, Landroid/content/Context;->sendStickyBroadcastAsUser(Landroid/content/Intent;Landroid/os/UserHandle;)V
 
     .end local v0    # "intent":Landroid/content/Intent;
+    .end local v1    # "intentHdmiPlug":Landroid/content/Intent;
+    .end local v2    # "operator":Ljava/lang/String;
     :cond_0
     return-void
+
+    .restart local v0    # "intent":Landroid/content/Intent;
+    .restart local v1    # "intentHdmiPlug":Landroid/content/Intent;
+    .restart local v2    # "operator":Ljava/lang/String;
+    :cond_1
+    const/4 v3, 0x0
+
+    goto :goto_0
 .end method
 
 .method public setInitialDisplaySize(Landroid/view/Display;III)V
@@ -23314,7 +23273,7 @@
     :goto_0
     invoke-static/range {p0 .. p0}, Lcom/android/internal/policy/impl/PhoneWindowManager$FlymeInjector;->mzSetTransWindow(Lcom/android/internal/policy/impl/PhoneWindowManager;)Landroid/view/WindowManagerPolicy$WindowState;
 
-    move-result-object v16
+    move-result-object v15
 
     move-object/from16 v0, p0
 
@@ -24319,7 +24278,7 @@
     if-gtz v4, :cond_2
 
     :cond_1
-    invoke-direct {p0}, Lcom/android/internal/policy/impl/PhoneWindowManager;->cancelPendingPowerKeyAction()V
+    invoke-virtual {p0}, Lcom/android/internal/policy/impl/PhoneWindowManager;->cancelPendingPowerKeyAction()V
 
     iput-boolean v6, p0, Lcom/android/internal/policy/impl/PhoneWindowManager;->mVolumeDownKeyConsumedByScreenshotChord:Z
 
