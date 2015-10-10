@@ -3684,6 +3684,8 @@
 
     if-nez v67, :cond_26
 
+    goto :goto_flyme_0
+
     .line 1130
     :try_start_46
     const-string v4, "SystemServer"
@@ -3720,6 +3722,7 @@
     .restart local v37    # "atlas":Lcom/android/server/AssetAtlasService;
     :cond_26
     :goto_34
+    :goto_flyme_0
     sget-boolean v4, Lcom/lge/config/ConfigBuildFlags;->CAPP_THEMEICON:Z
 
     const/4 v4, 0x0
