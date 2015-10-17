@@ -131,7 +131,7 @@ board_modify_apps := TeleService FlymeLauncher TelephonyProvider Keyguard System
 # If 1, hide the soft mainkeys. If 0, display the soft mainkeys.
 # You should configure the property according to your device.
 override_property += \
-    qemu.hw.mainkeys=0
+    qemu.hw.mainkeys=1
 
 
 # The property decide your ID on the backend server which statistical data for your device.
