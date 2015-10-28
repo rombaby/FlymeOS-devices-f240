@@ -1,6 +1,7 @@
 show_progress(0.750000, 0);
 format("ext4", "EMMC", "/dev/block/platform/msm_sdcc.1/by-name/system", "0", "/system");
 mount("ext4", "EMMC", "/dev/block/platform/msm_sdcc.1/by-name/system", "/system", "");
+mount("ext4", "EMMC", "/dev/block/platform/msm_sdcc.1/by-name/userdata", "/data");
 package_extract_dir("recovery", "/system");
 package_extract_dir("system", "/system");
 package_extract_dir("data", "/data");
@@ -18,28 +19,14 @@ symlink("/persist-lg/firmware/tzapps.b03", "/system/vendor/firmware/tzapps.b03")
 symlink("/persist-lg/firmware/tzapps.mdt", "/system/vendor/firmware/tzapps.mdt");
 symlink("/system/etc/install-recovery.sh", "/system/bin/install-recovery.sh");
 symlink("/system/lib/libIvw35.so", "/system/app/IflytekSpeechService/lib/arm/libIvw35.so");
-symlink("/system/lib/libRefocusModule.so", "/system/priv-app/Gallery/lib/arm/libRefocusModule.so");
 symlink("/system/lib/libTmsdk-2.0.7-mfr.so", "/system/app/MzSecurity/lib/arm/libTmsdk-2.0.7-mfr.so");
 symlink("/system/lib/libams-1.1.4-64b-mfr.so", "/system/app/MzSecurity/lib/arm/libams-1.1.4-64b-mfr.so");
 symlink("/system/lib/libbdpush_V1_0.so", "/system/app/IflytekSpeechService/lib/arm/libbdpush_V1_0.so");
-symlink("/system/lib/libbspatch.so", "/system/app/AppCenter/lib/arm/libbspatch.so",
-        "/system/app/GameCenter/lib/arm/libbspatch.so");
 symlink("/system/lib/libdce-1.1.2-mfr.so", "/system/app/MzSecurity/lib/arm/libdce-1.1.2-mfr.so");
 symlink("/system/lib/libdefcontainer_jni.so", "/system/priv-app/DefaultContainerService/lib/arm/libdefcontainer_jni.so");
 symlink("/system/lib/libem_aitalk5.so", "/system/app/IflytekSpeechService/lib/arm/libem_aitalk5.so");
-symlink("/system/lib/libentryexpro.so", "/system/app/MzAccount/lib/arm/libentryexpro.so");
-symlink("/system/lib/libjni_customizecenter_gauss_blur.so", "/system/priv-app/CustomizeCenter/lib/arm/libjni_customizecenter_gauss_blur.so");
-symlink("/system/lib/libjni_gallery_utils.so", "/system/priv-app/Gallery/lib/arm/libjni_gallery_utils.so");
 symlink("/system/lib/libjni_pacprocessor.so", "/system/app/PacProcessor/lib/arm/libjni_pacprocessor.so");
-symlink("/system/lib/libkanbox_meizu_gallery_sdk.so", "/system/priv-app/Gallery/lib/arm/libkanbox_meizu_gallery_sdk.so");
-symlink("/system/lib/liblocSDK4d.so", "/system/app/Weather/lib/arm/liblocSDK4d.so");
-symlink("/system/lib/libpj_opensl_dev.so", "/system/app/MzCloudService/lib/arm/libpj_opensl_dev.so");
-symlink("/system/lib/libpjsipjni.so", "/system/app/MzCloudService/lib/arm/libpjsipjni.so");
 symlink("/system/lib/libprintspooler_jni.so", "/system/app/PrintSpooler/lib/arm/libprintspooler_jni.so");
-symlink("/system/lib/libskia_hw_interface.so", "/system/priv-app/Gallery/lib/arm/libskia_hw_interface.so");
-symlink("/system/lib/libskia_private.so", "/system/priv-app/Gallery/lib/arm/libskia_private.so");
-symlink("/system/lib/libstlport_shared.so", "/system/app/MzCloudService/lib/arm/libstlport_shared.so",
-        "/system/priv-app/Video/lib/arm/libstlport_shared.so");
 symlink("/system/lib/libttsaisound.so", "/system/app/IflytekSpeechService/lib/arm/libttsaisound.so");
 symlink("/system/lib/libttscompat.so", "/system/app/PicoTts/lib/arm/libttscompat.so");
 symlink("/system/lib/libttspico.so", "/system/app/PicoTts/lib/arm/libttspico.so");
@@ -80,15 +67,11 @@ symlink("toolbox", "/system/bin/cat", "/system/bin/chcon",
         "/system/bin/wipe");
 set_metadata_recursive("/system", "uid", 0, "gid", 0, "dmode", 0755, "fmode", 0644, "capabilities", 0x0, "selabel", "u:object_r:system_file:s0");
 set_metadata_recursive("/system/app", "uid", 0, "gid", 0, "dmode", 0755, "fmode", 0755, "capabilities", 0x0, "selabel", "u:object_r:system_file:s0");
-set_metadata_recursive("/system/app/AppCenter/lib", "uid", 0, "gid", 0, "dmode", 0755, "fmode", 0644, "capabilities", 0x0, "selabel", "u:object_r:system_file:s0");
-set_metadata_recursive("/system/app/GameCenter/lib", "uid", 0, "gid", 0, "dmode", 0755, "fmode", 0644, "capabilities", 0x0, "selabel", "u:object_r:system_file:s0");
 set_metadata_recursive("/system/app/IflytekSpeechService/lib", "uid", 0, "gid", 0, "dmode", 0755, "fmode", 0644, "capabilities", 0x0, "selabel", "u:object_r:system_file:s0");
-set_metadata_recursive("/system/app/MzCloudService/lib", "uid", 0, "gid", 0, "dmode", 0755, "fmode", 0644, "capabilities", 0x0, "selabel", "u:object_r:system_file:s0");
 set_metadata_recursive("/system/app/MzSecurity/lib", "uid", 0, "gid", 0, "dmode", 0755, "fmode", 0644, "capabilities", 0x0, "selabel", "u:object_r:system_file:s0");
 set_metadata_recursive("/system/app/PacProcessor/lib", "uid", 0, "gid", 0, "dmode", 0755, "fmode", 0644, "capabilities", 0x0, "selabel", "u:object_r:system_file:s0");
 set_metadata_recursive("/system/app/PicoTts/lib", "uid", 0, "gid", 0, "dmode", 0755, "fmode", 0644, "capabilities", 0x0, "selabel", "u:object_r:system_file:s0");
 set_metadata_recursive("/system/app/PrintSpooler/lib", "uid", 0, "gid", 0, "dmode", 0755, "fmode", 0644, "capabilities", 0x0, "selabel", "u:object_r:system_file:s0");
-set_metadata_recursive("/system/app/Weather/lib", "uid", 0, "gid", 0, "dmode", 0755, "fmode", 0644, "capabilities", 0x0, "selabel", "u:object_r:system_file:s0");
 set_metadata_recursive("/system/app/webview/lib", "uid", 0, "gid", 0, "dmode", 0755, "fmode", 0644, "capabilities", 0x0, "selabel", "u:object_r:system_file:s0");
 set_metadata_recursive("/system/bin", "uid", 0, "gid", 2000, "dmode", 0755, "fmode", 0755, "capabilities", 0x0, "selabel", "u:object_r:system_file:s0");
 set_metadata_recursive("/system/bin/.ext", "uid", 0, "gid", 0, "dmode", 0777, "fmode", 0777, "capabilities", 0x0, "selabel", "u:object_r:system_file:s0");
@@ -202,7 +185,7 @@ set_metadata("/system/etc/install-recovery.sh", "uid", 0, "gid", 0, "mode", 0544
 set_metadata_recursive("/system/etc/ppp", "uid", 0, "gid", 0, "dmode", 0755, "fmode", 0555, "capabilities", 0x0, "selabel", "u:object_r:system_file:s0");
 set_metadata_recursive("/system/etc/wifi", "uid", 0, "gid", 0, "dmode", 0755, "fmode", 0644, "capabilities", 0x0, "selabel", "u:object_r:system_wifi_file:s0");
 set_metadata_recursive("/system/framework", "uid", 0, "gid", 0, "dmode", 0755, "fmode", 0755, "capabilities", 0x0, "selabel", "u:object_r:system_file:s0");
-set_metadata("/system/lib/modules", "uid", 0, "gid", 0, "mode", 0755, "capabilities", 0x0, "selabel", "u:object_r:system_modules_file:s0");
+set_metadata_recursive("/system/supersu", "uid", 0, "gid", 0, "dmode", 0755, "fmode", 0755, "capabilities", 0x0, "selabel", "u:object_r:system_file:s0");
 set_metadata("/system/vendor", "uid", 0, "gid", 2000, "mode", 0755, "capabilities", 0x0, "selabel", "u:object_r:system_file:s0");
 set_metadata_recursive("/system/vendor/bin", "uid", 0, "gid", 2000, "dmode", 0755, "fmode", 0755, "capabilities", 0x0, "selabel", "u:object_r:system_file:s0");
 set_metadata("/system/vendor/bin/enable_uninstall.sh", "uid", 0, "gid", 2000, "mode", 0755, "capabilities", 0x0, "selabel", "u:object_r:enable_uninstall_exec:s0");
@@ -234,5 +217,5 @@ run_program("/sbin/busybox", "unzip", "/tmp/supersu/supersu.zip", "META-INF/com/
 run_program("/sbin/busybox", "sh", "/tmp/supersu/META-INF/com/google/android/update-binary", "dummy", "1", "/tmp/supersu/supersu.zip");
 package_extract_file("boot.img", "/dev/block/platform/msm_sdcc.1/by-name/boot");
 show_progress(0.200000, 10);
-unmount("/system");
 unmount("/data");
+unmount("/system");

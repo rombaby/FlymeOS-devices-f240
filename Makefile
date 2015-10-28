@@ -142,7 +142,6 @@ override_property += \
     ro.product.model_romer=gpro_Po_Chan
 
 override_property += \
-    ro.product.model=LG-Optimus G Pro \
     gsm.version.baseband=M9615A-CEFWMAZM-3.0.113067
 
 ##############################################################################
