@@ -138,7 +138,12 @@ override_property += \
 # The default value is Flyme.
 # You should configure the property according to your ID, ie, replace "Flyme" with your ID.
 override_property += \
-    ro.flyme.romer=Po_Chan
+    ro.flyme.romer=Po_Chan \
+    ro.product.model_romer=gpro_Po_Chan
+
+override_property += \
+    ro.product.model=LG-Optimus G Pro \
+    gsm.version.baseband=M9615A-CEFWMAZM-3.0.113067
 
 ##############################################################################
 # The value decides which property you will remove from the build.prop.
